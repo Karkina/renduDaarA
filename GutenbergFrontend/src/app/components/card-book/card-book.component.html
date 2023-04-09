@@ -1,0 +1,14 @@
+<a class="card mb-3 m-4" style="width: 470px; height: 232px;" [href]="book.text" target="_blank">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="book.coverBook" alt="..." style="height: 230px; width: 160px" >
+    </div>
+    <div class="col-md-8">
+      <div class="card-body ">
+        <h5 class="card-title">{{book.title}}</h5>
+        <p class="card-text"></p>
+        <p class="card-text position-absolute bottom-0 end-0 m-2"><small class="text-muted">{{book.author}} - {{book.language}} </small></p>
+      </div>
+    </div>
+  </div>
+</a>

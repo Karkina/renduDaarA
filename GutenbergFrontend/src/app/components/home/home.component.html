@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="me-5 mt-5 d-flex justify-content-center">
+    <div class="col-6">
+      <form class="d-flex" #f="ngForm" (ngSubmit)="onSearch(f.value)" >
+        <input class="form-control me-2" name="search" ngModel required #search="ngModel"  type="search" placeholder="Search" aria-label="Search" >
+        <button class="btn btn-outline-success ms-4" type="submit" value = "submit" [disabled]="!f.valid">Recherche</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid mt-5">
+
+  <div *ngIf="data.length != 0">
+    <div class="position-relative">
+      <p class="fs-3">Résultats de la recherche</p>
+      <div class="row position-absolute top-0 end-0">
+        <div class="dropdown">
+          <a class="btn btn-secondary  btn btn-dark position-relative" href="#" role="button" id="dropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <span *ngIf="isSorted" span> {{ sortedtype }} </span> <span *ngIf="!isSorted"> Classement </span> <svg width="1em" height="1em" viewBox="0 0 16 16"
+              class="position-absolute top-100 start-50 translate-middle mt-1 bi bi-caret-down-fill" fill="#212529"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+            </svg>
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" (click)="onSorted('pertinence')">Pertinence</a></li>
+            <li><a class="dropdown-item" (click)="onSorted('langue')">Langue</a></li>
+            <li><a class="dropdown-item" (click)="onSorted('author')">Auteur</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <hr>
+    <div class="bodyContainer mb-2">
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <div *ngFor="let item of data">
+          <app-card-book [book]=item></app-card-book>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="container-fluid mt-5 mb-5">
+
+  <div *ngIf="suggestions.length != 0">
+    <div class="position-relative">
+      <p class="fs-3">Suggestions de livres</p>
+    </div>
+    <hr>
+    <div class="bodyContainer mb-2">
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <div *ngFor="let item of suggestions">
+          <app-card-book [book]=item></app-card-book>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<notifier-container></notifier-container>
